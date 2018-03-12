@@ -9,6 +9,7 @@ class Groupoid(object):
         """
         self.carrier = self.__verify_carrier(carrier_set, binary_operation)
         self.binary_operation = binary_operation
+        self.identitiey = self.__find_identitiey()
 
     def __verify_carrier(self, carrier_set, binary_operation):
         for element1 in carrier_set:
@@ -21,8 +22,8 @@ class Groupoid(object):
                         """
                         raise RuntimeError(error_message)
                 except Exception as error:
-                    raise RuntimeError('Binary operation is not vailed') from error
-            return carrier_set
+                    raise RuntimeError('Binary operation is not vailed | '+error) from error
+        return carrier_set
 
     def get_carrier(self):
         "return carrier"
@@ -30,4 +31,16 @@ class Groupoid(object):
 
     def set_carrier(self, carrier_set):
         "set carrier value"
-        self.carrie = carrier_set
+        self.carrier = carrier_set
+
+    def __find_identitiey(self):
+        identitiey = None
+        for element1 in self.carrier:
+            for element2 in self.carrier:
+                if self.binary_operation(element1, element2) == element1:
+                    identitiey = element1
+                    break
+        return identitiey
+
+    def get_identitiey(self):
+        return self.identitiey
