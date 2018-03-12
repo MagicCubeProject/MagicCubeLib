@@ -1,2 +1,2 @@
 # gtpy
-Group Theory library for python
+Group Theory library for Python
