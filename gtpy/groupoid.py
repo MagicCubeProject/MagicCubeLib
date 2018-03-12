@@ -19,7 +19,7 @@ class Groupoid(object):
                         {element1}*{element2} not in {carrier_set}
                         the binary operation not defined"
                         """
-                    raise RuntimeError(error_message)
+                        raise RuntimeError(error_message)
                 except Exception as error:
                     raise RuntimeError('Binary operation is not vailed') from error
             return carrier_set
