@@ -43,4 +43,5 @@ class Groupoid(object):
         return identitiey
 
     def get_identitiey(self):
+        "Returning identitiey element of carrier"
         return self.identitiey
