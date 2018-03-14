@@ -1,56 +1,60 @@
-from enum import Enum
+from enum import Flag,auto
 
-class MCubeMoves(Enum):
-    FRONT   = 1
-    RIGHT   = 2
-    DOWN    = 3
-    UP      = 4
-    LEFT    = 5
-    BACK    = 6
+# todo , add flag
+class MCubeMoves(Flag):
+    IDENTICAL = auto()
 
-    FRONT_INVERS    = 7
-    RIGHT_INVERS    = 8
-    DOWN_INVERS     = 9
-    UP_INVERS       = 10
-    LEFT_INVERS     = 11
-    BACK_INVERS     = 12
+    FRONT   = auto()
+    RIGHT   = auto()
+    DOWN    = auto()
+    UP      = auto()
+    LEFT    = auto()
+    BACK    = auto()
 
-    FRONT_DOUBLE    = 13
-    RIGHT_DOUBLE    = 14
-    DOWN_DOUBLE     = 15
-    UP_DOUBLE       = 16
-    LEFT_DOUBLE     = 17
-    BACK_DOUBLE     = 18
+    FRONT_INVERS    = auto()
+    RIGHT_INVERS    = auto()
+    DOWN_INVERS     = auto()
+    UP_INVERS       = auto()
+    LEFT_INVERS     = auto()
+    BACK_INVERS     = auto()
 
-    FRONT_BACK          = 19
-    FRONT_BACK_INVERS   = 20
-    FRONT_BACK_DOUBLE   = 21
-    RIGHT_LEFT          = 22
-    RIGHT_LEFT_INVERS   = 23
-    RIGHT_LEFT_DOUBLE   = 24
-    UP_DOWN             = 25
-    UP_DOWN_INVERS      = 26
-    UP_DOWN_DOUBLE      = 27
+    FRONT_DOUBLE    = auto()
+    RIGHT_DOUBLE    = auto()
+    DOWN_DOUBLE     = auto()
+    UP_DOUBLE       = auto()
+    LEFT_DOUBLE     = auto()
+    BACK_DOUBLE     = auto()
 
-    FRONT_INVERS_BACK           = 28
-    FRONT_INVERS_BACK_INVERS    = 29
-    FRONT_INVERS_BACK_DOUBLE    = 30
-    RIGHT_INVERS_LEFT           = 31
-    RIGHT_INVERS_LEFT_INVERS    = 32
-    RIGHT_INVERS_LEFT_DOUBLE    = 33
-    UP_INVERS_DOWN              = 34
-    UP_INVERS_DOWN_INVERS       = 35
-    UP_INVERS_DOWN_DOUBLE       = 36
+    FRONT_BACK          = FRONT | BACK
+    FRONT_BACK_INVERS   = FRONT | BACK_INVERS
+    FRONT_BACK_DOUBLE   = FRONT | BACK_DOUBLE
+    RIGHT_LEFT          = RIGHT | LEFT
+    RIGHT_LEFT_INVERS   = RIGHT | LEFT_INVERS
+    RIGHT_LEFT_DOUBLE   = RIGHT | LEFT_DOUBLE
+    UP_DOWN             = UP | DOWN
+    UP_DOWN_INVERS      = UP | DOWN_INVERS
+    UP_DOWN_DOUBLE      = UP | DOWN_DOUBLE
 
-    FRONT_DOUBLE_BACK           = 37
-    FRONT_DOUBLE_BACK_INVERS    = 38
-    FRONT_DOUBLE_BACK_DOUBLE    = 40
-    RIGHT_DOUBLE_LEFT           = 41
-    RIGHT_DOUBLE_LEFT_INVERS    = 42
-    RIGHT_DOUBLE_LEFT_DOUBLE    = 43
-    UP_DOUBLE_DOWN              = 44
-    UP_DOUBLE_DOWN_INVERS       = 45
-    UP_DOUBLE_DOWN_DOUBLE       = 46
+    FRONT_INVERS_BACK           = FRONT_INVERS | BACK
+    FRONT_INVERS_BACK_INVERS    = FRONT_INVERS | BACK_INVERS
+    FRONT_INVERS_BACK_DOUBLE    = FRONT_INVERS | BACK_DOUBLE
+    RIGHT_INVERS_LEFT           = RIGHT_INVERS | LEFT
+    RIGHT_INVERS_LEFT_INVERS    = RIGHT_INVERS | LEFT_INVERS
+    RIGHT_INVERS_LEFT_DOUBLE    = RIGHT_INVERS | LEFT_DOUBLE
+    UP_INVERS_DOWN              = UP_INVERS | DOWN
+    UP_INVERS_DOWN_INVERS       = UP_INVERS | DOWN_INVERS
+    UP_INVERS_DOWN_DOUBLE       = UP_INVERS | DOWN_DOUBLE
+
+    FRONT_DOUBLE_BACK           = FRONT_DOUBLE | BACK
+    FRONT_DOUBLE_BACK_INVERS    = FRONT_DOUBLE | BACK_INVERS
+    FRONT_DOUBLE_BACK_DOUBLE    = FRONT_DOUBLE | BACK_DOUBLE
+    RIGHT_DOUBLE_LEFT           = RIGHT_DOUBLE | LEFT
+    RIGHT_DOUBLE_LEFT_INVERS    = RIGHT_DOUBLE | LEFT_INVERS
+    RIGHT_DOUBLE_LEFT_DOUBLE    = RIGHT_DOUBLE | LEFT_DOUBLE
+    UP_DOUBLE_DOWN              = UP_DOUBLE | DOWN
+    UP_DOUBLE_DOWN_INVERS       = UP_DOUBLE | DOWN_INVERS
+    UP_DOUBLE_DOWN_DOUBLE       = UP_DOUBLE | DOWN_DOUBLE
+
 
 
 class MCubeState(object):
@@ -66,8 +70,18 @@ class MCubeState(object):
                 result+=':0{}'.format(str(code))
         return result
 
+    def move_to(self,move):
+        if move is MCubeMoves.IDENTICAL:
+            return MCubeState(self.list_code)
+
 if __name__=="__main__":
+    b = 0
     for move in MCubeMoves:
-        print (move)
+        print (b,move)
+        b +=1
+
     mc = MCubeState()
     print(mc,len(str(mc)))
+
+    mc2 = mc.move_to(MCubeMoves.IDENTICAL)
+    print(mc2,len(str(mc2)))
