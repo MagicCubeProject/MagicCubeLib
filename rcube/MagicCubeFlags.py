@@ -63,7 +63,7 @@ class MCubeSide(Flag):
     LEFT    = auto()
     BACK    = auto()
 
-class MCubePosition(Flag):
+class MCubeDirection(Flag):
     CENTER  = auto()
     NORTH   = auto()
     EAST    = auto()
