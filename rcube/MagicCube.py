@@ -33,103 +33,149 @@ class MCubeState(object):
             return None
 
 class MCubeSideState(object):
-    def __init__(self,state_set=None):
-        self.dir_dict = dict()
-        if not state_set is None:
-            self.dir_dict[MCubeDirection.NORTH_WEST] = state_set[0]
-            self.dir_dict[MCubeDirection.NORTH] = state_set[1]
-            self.dir_dict[MCubeDirection.NORTH_EAST] = state_set[2]
-            self.dir_dict[MCubeDirection.WEST] = state_set[3]
-            self.dir_dict[MCubeDirection.CENTER] = state_set[4]
-            self.dir_dict[MCubeDirection.EAST] = state_set[5]
-            self.dir_dict[MCubeDirection.SOUTH_WEST] = state_set[6]
-            self.dir_dict[MCubeDirection.SOUTH] = state_set[7]
-            self.dir_dict[MCubeDirection.SOUTH_EAST] = state_set[8]
+    def __init__(self, side):
+        self.side = side
+        self.neighbors = self.get_neighbors()
+        self.value = {
+            MCubeDirection.NORTH_WEST   : side,
+            MCubeDirection.NORTH        : side,
+            MCubeDirection.NORTH_EAST   : side,
+            MCubeDirection.WEST         : side,
+            MCubeDirection.CENTER       : side,
+            MCubeDirection.EAST         : side,
+            MCubeDirection.SOUTH_WEST   : side,
+            MCubeDirection.SOUTH        : side,
+            MCubeDirection.SOUTH_EAST   : side,
+        }
 
-    def set_dir(self,dir,value):
-        self.dir_dict[dir] = value
+    def get_value(self,direction):
+        return self.value[direction]
 
+    def set_value(self,direction,value):
+        self.value[direction]=value
 
-    def __str__(self):
-        string_type = str()
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.NORTH_WEST]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.NORTH]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.NORTH_EAST]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.WEST]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.CENTER]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.EAST]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.SOUTH_WEST]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.SOUTH]))
-        string_type+= (':'+str(self.dir_dict[MCubeDirection.SOUTH_EAST]))
-        return string_type
+    def get_line(self,direction):
+        if direction is MCubeDirection.NORTH:
+            return [
+                self.value[MCubeDirection.NORTH_WEST],
+                self.value[MCubeDirection.NORTH],
+                self.value[MCubeDirection.NORTH_EAST],
+            ]
+        elif direction is MCubeDirection.EAST:
+            return [
+                self.value[MCubeDirection.NORTH_EAST],
+                self.value[MCubeDirection.EAST],
+                self.value[MCubeDirection.SOUTH_EAST],
+            ]
+        elif direction is MCubeDirection.SOUTH:
+            return [
+                self.value[MCubeDirection.SOUTH_EAST],
+                self.value[MCubeDirection.SOUTH],
+                self.value[MCubeDirection.SOUTH_WEST],
+            ]
+        elif direction is MCubeDirection.WAST:
+            return [
+                self.value[MCubeDirection.SOUTH_WEST],
+                self.value[MCubeDirection.WEST],
+                self.value[MCubeDirection.NORTH_WEST],
+            ]
 
-    def get_list(self):
-        list_type = list()
-        list_type.append(self.dir_dict[MCubeDirection.NORTH_WEST])
-        list_type.append(self.dir_dict[MCubeDirection.NORTH])
-        list_type.append(self.dir_dict[MCubeDirection.NORTH_EAST])
-        list_type.append(self.dir_dict[MCubeDirection.WEST])
-        list_type.append(self.dir_dict[MCubeDirection.CENTER])
-        list_type.append(self.dir_dict[MCubeDirection.EAST])
-        list_type.append(self.dir_dict[MCubeDirection.SOUTH_WEST])
-        list_type.append(self.dir_dict[MCubeDirection.SOUTH])
-        list_type.append(self.dir_dict[MCubeDirection.SOUTH_EAST])
-        return list_type
-
-    def rotated_to(self):
-        temp_state = MCubeSideState()
-        temp_state.set_dir(
-            MCubeDirection.CENTER,
-            self.dir_dict[MCubeDirection.CENTER]
-        )
-        temp_state.set_dir(
-            MCubeDirection.SOUTH_WEST,
-            self.dir_dict[MCubeDirection.NORTH_WEST]
-        )
-        temp_state.set_dir(
-            MCubeDirection.NORTH_WEST,
-            self.dir_dict[MCubeDirection.NORTH_EAST]
-        )
-        temp_state.set_dir(
-            MCubeDirection.NORTH_EAST,
-            self.dir_dict[MCubeDirection.SOUTH_EAST]
-        )
-        temp_state.set_dir(
-            MCubeDirection.SOUTH_EAST,
-            self.dir_dict[MCubeDirection.SOUTH_WEST]
-        )
-        temp_state.set_dir(
-            MCubeDirection.WEST,
-            self.dir_dict[MCubeDirection.NORTH]
-        )
-        temp_state.set_dir(
-            MCubeDirection.NORTH,
-            self.dir_dict[MCubeDirection.EAST]
-        )
-        temp_state.set_dir(
-            MCubeDirection.EAST,
-            self.dir_dict[MCubeDirection.SOUTH]
-        )
-        temp_state.set_dir(
-            MCubeDirection.SOUTH,
-            self.dir_dict[MCubeDirection.WEST]
-        )
-        return MCubeSideState
+    def set_line(self, direction, value):
+        if direction is MCubeDirection.NORTH:
+            self.value[MCubeDirection.NORTH_WEST]   = value[0]
+            self.value[MCubeDirection.NORTH]        = value[1]
+            self.value[MCubeDirection.NORTH_EAST]   = value[2]
+        elif direction is MCubeDirection.EAST:
+            self.value[MCubeDirection.NORTH_EAST]   = value[0]
+            self.value[MCubeDirection.EAST]         = value[1]
+            self.value[MCubeDirection.SOUTH_EAST]   = value[2]
+        elif direction is MCubeDirection.SOUTH:
+            self.value[MCubeDirection.SOUTH_EAST]   = value[0]
+            self.value[MCubeDirection.SOUTH]        = value[1]
+            self.value[MCubeDirection.SOUTH_WEST]   = value[2]
+        elif direction is MCubeDirection.WAST:
+            self.value[MCubeDirection.SOUTH_WEST]   = value[0]
+            self.value[MCubeDirection.WEST]         = value[1]
+            self.value[MCubeDirection.NORTH_WEST]   = value[2]
 
 
-if __name__ == "__main__":
-    for move in MCubeMoves:
-        print(move)
-    print(20*'_')
-    for side in MCubeSide:
-        print(side)
+    def get_neighbors(self):
+        if self.side is MCubeSide.FRONT:
+            return {
+                MCubeDirection.NORTH    : MCubeSide.UP,
+                MCubeDirection.WEST     : MCubeSide.LEFT,
+                MCubeDirection.EAST     : MCubeSide.RIGHT,
+                MCubeDirection.SOUTH    : MCubeSide.DOWN,
+            }
+        elif self.side is MCubeSide.RIGHT:
+            return {
+                MCubeDirection.NORTH    : MCubeSide.UP,
+                MCubeDirection.EAST     : MCubeSide.BACK,
+                MCubeDirection.SOUTH    : MCubeSide.DOWN,
+                MCubeDirection.WEST     : MCubeSide.FRONT,
+            }
+        elif self.side is MCubeSide.DOWN:
+            return {
+                MCubeDirection.NORTH    : MCubeSide.FRONT,
+                MCubeDirection.WEST     : MCubeSide.LEFT,
+                MCubeDirection.EAST     : MCubeSide.RIGHT,
+                MCubeDirection.SOUTH    : MCubeSide.BACK,
+            }
+        elif self.side is MCubeSide.UP:
+            return {
+                MCubeDirection.NORTH    : MCubeSide.BACK,
+                MCubeDirection.WEST     : MCubeSide.LEFT,
+                MCubeDirection.EAST     : MCubeSide.RIGHT,
+                MCubeDirection.SOUTH    : MCubeSide.FRONT,
+            }
+        elif self.side is MCubeSide.LEFT:
+            return {
+                MCubeDirection.NORTH    : MCubeSide.DOWN,
+                MCubeDirection.WEST     : MCubeSide.FRONT,
+                MCubeDirection.EAST     : MCubeSide.BACK,
+                MCubeDirection.SOUTH    : MCubeSide.UP,
+            }
+        elif self.side is MCubeSide.BACK:
+            return {
+                MCubeDirection.NORTH    : MCubeSide.DOWN,
+                MCubeDirection.WEST     : MCubeSide.LEFT,
+                MCubeDirection.EAST     : MCubeSide.RIGHT,
+                MCubeDirection.SOUTH    : MCubeSide.UP,
+            }
 
-    print(20*'_')
-    for dir in MCubeDirection:
-        print(dir)
-    print(20*'_')
-    m = MCubeState()
-    print(m)
-    print(m.get_list())
-    a =  m.get_state(MCubeMoves.IDENTICAL)
-    print(a)
+        def get_rotated_state():
+            side_value = self.get_value(MCubeDirection.CENTER)
+            newState = MCubeSideState(side_value)
+            newState.set_value(
+                MCubeDirection.NORTH_WEST,
+                self.get_value(MCubeDirection.SOUTH_WEST)
+            )
+            newState.set_value(
+                MCubeDirection.NORTH_EAST,
+                self.get_value(MCubeDirection.NORTH_WEST)
+            )
+            newState.set_value(
+                MCubeDirection.SOUTH_EAST,
+                self.get_value(MCubeDirection.NORTH_EAST)
+            )
+            newState.set_value(
+                MCubeDirection.SOUTH_WEST,
+                self.get_value(MCubeDirection.SOUTH_EAST)
+            )
+            newState.set_value(
+                MCubeDirection.NORTH,
+                self.get_value(MCubeDirection.WEST)
+            )
+            newState.set_value(
+                MCubeDirection.EAST,
+                self.get_value(MCubeDirection.NORTH)
+            )
+            newState.set_value(
+                MCubeDirection.SOUTH,
+                self.get_value(MCubeDirection.EAST)
+            )
+            newState.set_value(
+                MCubeDirection.WEST,
+                self.get_value(MCubeDirection.SOUTH)
+            )
+            return newState
