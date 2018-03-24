@@ -1,3 +1,4 @@
+import copy
 from rcube.MagicCubeFlags import MCubeMoves
 from rcube.MagicCubeFlags import MCubeSide
 from rcube.MagicCubeFlags import MCubeDirection
@@ -32,32 +33,7 @@ class MCubeState(object):
         self.value[side] = value
 
     def __get_copy(self):
-        new_cube_state = MCubeState()
-        new_cube_state.__set_side(
-            MCubeSide.FRONT,
-            self.__get_side(MCubeSide.FRONT)
-        )
-        new_cube_state.__set_side(
-            MCubeSide.RIGHT,
-            self.__get_side(MCubeSide.RIGHT)
-        )
-        new_cube_state.__set_side(
-            MCubeSide.DOWN,
-            self.__get_side(MCubeSide.DOWN)
-        )
-        new_cube_state.__set_side(
-            MCubeSide.UP,
-            self.__get_side(MCubeSide.UP)
-        )
-        new_cube_state.__set_side(
-            MCubeSide.LEFT,
-            self.__get_side(MCubeSide.LEFT)
-        )
-        new_cube_state.__set_side(
-            MCubeSide.BACK,
-            self.__get_side(MCubeSide.BACK)
-        )
-        return new_cube_state
+        return copy.deepcopy(self)
 
     def __get_neighbor_line(self,side,direction):
         work_side = self.__get_side(side)
@@ -79,23 +55,51 @@ class MCubeState(object):
         neighbor_side.set_line(neighbor_direction,line)
 
     def get_rotated_state(self, side):
-        print(20*'\'')
-        print("side :",side)
-        print(self.__get_neighbor_line(
+        new_cube_state = self.__get_copy()
+        new_cube_state.__set_side(
+            side,
+            self.__get_side(side).get_rotated_state()
+        )
+        tmp_north_line = self.__get_neighbor_line(
             side,
             MCubeDirection.NORTH
-        ))
-        self.__set_neighbor_line(
+        )
+        new_cube_state.__set_neighbor_line(
             side,
-            MCubeDirection.NORTH,
-            [MCubeSide.LEFT,MCubeSide.UP,MCubeSide.DOWN]
+            MCubeDirection.EAST,
+            tmp_north_line
         )
 
-        print(self.__get_neighbor_line(
+        tmp_east_line = self.__get_neighbor_line(
             side,
-            MCubeDirection.NORTH
-        ))
+            MCubeDirection.EAST
+        )
+        new_cube_state.__set_neighbor_line(
+            side,
+            MCubeDirection.SOUTH,
+            tmp_east_line
+        )
 
+        tmp_south_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.SOUTH
+        )
+        new_cube_state.__set_neighbor_line(
+            side,
+            MCubeDirection.WEST,
+            tmp_south_line
+        )
+
+        tmp_west_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.WEST
+        )
+        new_cube_state.__set_neighbor_line(
+            side,
+            MCubeDirection.NORTH,
+            tmp_west_line
+        )
+        return new_cube_state
 
 class MCubeSideState(object):
     def __init__(self, side):

@@ -11,3 +11,4 @@ if __name__=="__main__":
     mc = MCubeState()
     print(mc)
     nmc = mc.get_rotated_state(MCubeSide.FRONT)
+    print(nmc)
