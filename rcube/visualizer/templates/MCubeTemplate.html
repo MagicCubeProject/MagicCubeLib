@@ -26,32 +26,32 @@
   width: 50px;
   display: table-cell;
     margin: 1 auto;
-  /*background-color: #ccc;*/
+  background-color: #ccc;
   border-style: solid;
   border-color: white;
 }
 
-.up{
+.side8{
   border-style: solid;
   border-color: #ffff00;
 }
-.down{
+.side4{
   border-style: solid;
   border-color: gray;
 }
-.left{
+.side16{
   border-style: solid;
   border-color: orange;
 }
-.front{
+.side1{
   border-style: solid;
   border-color: green;
 }
-.right{
+.side2{
   border-style: solid;
   border-color: red;
 }
-.back{
+.side32{
   border-style: solid;
   border-color: blue;
 }
@@ -59,7 +59,7 @@
 </head>
 <body>
 <div class="cube-map">
-  <h2>Map of Rubik's Cube | Postition ID : {id}</h2>
+  <h3>Map of Rubik's Cube | Postition ID : {{id}}</h3>
   <div class="line1">
     <div class="Row">
       <!--  -->
@@ -67,9 +67,9 @@
       <div class="side"></div>
       <div class="side"></div>
       <!--Up side  -->
-      <div class="side up"></div>
-      <div class="side up"></div>
-      <div class="side up"></div>
+      <div class="side side{{values["UP_NORTH_WEST"]}}"></div>
+      <div class="side side{{values["UP_NORTH"]}}"></div>
+      <div class="side side{{values["UP_NORTH_EAST"]}}"></div>
       <!--  -->
       <div class="side"></div>
       <div class="side"></div>
@@ -85,9 +85,9 @@
       <div class="side"></div>
       <div class="side"></div>
       <!--Up side  -->
-      <div class="side up"></div>
-      <div class="side up"></div>
-      <div class="side up"></div>
+      <div class="side side{{values["UP_WEST"]}}"></div>
+      <div class="side side{{values["UP_CENTER"]}}"></div>
+      <div class="side side{{values["UP_EAST"]}}"></div>
       <!--  -->
       <div class="side"></div>
       <div class="side"></div>
@@ -103,9 +103,9 @@
       <div class="side"></div>
       <div class="side"></div>
       <!--Up side  -->
-      <div class="side up"></div>
-      <div class="side up"></div>
-      <div class="side up"></div>
+      <div class="side side{{values["UP_SOUTH_WEST"]}}"></div>
+      <div class="side side{{values["UP_SOUTH"]}}"></div>
+      <div class="side side{{values["UP_SOUTH_EAST"]}}"></div>
       <!--  -->
       <div class="side"></div>
       <div class="side"></div>
@@ -118,57 +118,57 @@
   <div class="line2">
       <div class="Row">
         <!-- Left side -->
-        <div class="side left"></div>
-        <div class="side left"></div>
-        <div class="side left"></div>
+        <div class="side side{{values["LEFT_SOUTH_EAST"]}}"></div>
+        <div class="side side{{values["LEFT_SOUTH"]}}"></div>
+        <div class="side side{{values["LEFT_SOUTH_WEST"]}}"></div>
         <!-- Front side -->
-        <div class="side front"></div>
-        <div class="side front"></div>
-        <div class="side front"></div>
+        <div class="side side{{values["FRONT_NORTH_WEST"]}}"></div>
+        <div class="side side{{values["FRONT_NORTH"]}}"></div>
+        <div class="side side{{values["FRONT_NORTH_EAST"]}}"></div>
         <!-- Right side -->
-        <div class="side right"></div>
-        <div class="side right"></div>
-        <div class="side right"></div>
+        <div class="side side{{values["RIGHT_NORTH_WEST"]}}"></div>
+        <div class="side side{{values["RIGHT_NORTH"]}}"></div>
+        <div class="side side{{values["RIGHT_NORTH_EAST"]}}"></div>
         <!--  -->
-        <div class="side back"></div>
-        <div class="side back"></div>
-        <div class="side back"></div>
+        <div class="side side{{values["BACK_SOUTH_EAST"]}}"></div>
+        <div class="side side{{values["BACK_SOUTH"]}}"></div>
+        <div class="side side{{values["BACK_SOUTH_WEST"]}}"></div>
       </div>
       <div class="Row">
         <!-- Left side -->
-        <div class="side left"></div>
-        <div class="side left"></div>
-        <div class="side left"></div>
+        <div class="side side{{values["LEFT_EAST"]}}"></div>
+        <div class="side side{{values["LEFT_CENTER"]}}"></div>
+        <div class="side side{{values["LEFT_WEST"]}}"></div>
         <!-- Front side -->
-        <div class="side front"></div>
-        <div class="side front"></div>
-        <div class="side front"></div>
+        <div class="side side{{values["FRONT_WEST"]}}"></div>
+        <div class="side side{{values["FRONT_CENTER"]}}"></div>
+        <div class="side side{{values["FRONT_EAST"]}}"></div>
         <!-- Right side -->
-        <div class="side right"></div>
-        <div class="side right"></div>
-        <div class="side right"></div>
+        <div class="side side{{values["RIGHT_WEST"]}}"></div>
+        <div class="side side{{values["RIGHT_CENTER"]}}"></div>
+        <div class="side side{{values["RIGHT_EAST"]}}"></div>
         <!--  -->
-        <div class="side back"></div>
-        <div class="side back"></div>
-        <div class="side back"></div>
+        <div class="side side{{values["BACK_EAST"]}}"></div>
+        <div class="side side{{values["BACK_CENTER"]}}"></div>
+        <div class="side side{{values["BACK_WEST"]}}"></div>
       </div>
       <div class="Row">
         <!-- Left side -->
-        <div class="side left"></div>
-        <div class="side left"></div>
-        <div class="side left"></div>
+        <div class="side side{{values["LEFT_NORTH_EAST"]}}"></div>
+        <div class="side side{{values["LEFT_NORTH"]}}"></div>
+        <div class="side side{{values["LEFT_NORTH_WEST"]}}"></div>
         <!-- Front side -->
-        <div class="side front"></div>
-        <div class="side front"></div>
-        <div class="side front"></div>
+        <div class="side side{{values["FRONT_SOUTH_WEST"]}}"></div>
+        <div class="side side{{values["FRONT_SOUTH"]}}"></div>
+        <div class="side side{{values["FRONT_SOUTH_EAST"]}}"></div>
         <!-- Right side -->
-        <div class="side right"></div>
-        <div class="side right"></div>
-        <div class="side right"></div>
+        <div class="side side{{values["RIGHT_SOUTH_WEST"]}}"></div>
+        <div class="side side{{values["RIGHT_SOUTH"]}}"></div>
+        <div class="side side{{values["RIGHT_SOUTH_EAST"]}}"></div>
         <!--  -->
-        <div class="side back"></div>
-        <div class="side back"></div>
-        <div class="side back"></div>
+        <div class="side side{{values["BACK_NORTH_EAST"]}}"></div>
+        <div class="side side{{values["BACK_NORTH"]}}"></div>
+        <div class="side side{{values["BACK_NORTH_WEST"]}}"></div>
       </div>
   <div class="line3">
         <div class="Row">
@@ -177,9 +177,9 @@
           <div class="side"></div>
           <div class="side"></div>
           <!--Up side  -->
-          <div class="side down"></div>
-          <div class="side down"></div>
-          <div class="side down"></div>
+          <div class="side side{{values["DOWN_NORTH_WEST"]}}"></div>
+          <div class="side side{{values["DOWN_NORTH"]}}"></div>
+          <div class="side side{{values["DOWN_NORTH_EAST"]}}"></div>
           <!--  -->
           <div class="side"></div>
           <div class="side"></div>
@@ -195,9 +195,9 @@
           <div class="side"></div>
           <div class="side"></div>
           <!--Up side  -->
-          <div class="side down"></div>
-          <div class="side down"></div>
-          <div class="side down"></div>
+          <div class="side side{{values["DOWN_WEST"]}}"></div>
+          <div class="side side{{values["DOWN_CENTER"]}}"></div>
+          <div class="side side{{values["DOWN_EAST"]}}"></div>
           <!--  -->
           <div class="side"></div>
           <div class="side"></div>
@@ -213,9 +213,9 @@
           <div class="side"></div>
           <div class="side"></div>
           <!--Up side  -->
-          <div class="side down"></div>
-          <div class="side down"></div>
-          <div class="side down"></div>
+          <div class="side side{{values["DOWN_SOUTH_WEST"]}}"></div>
+          <div class="side side{{values["DOWN_SOUTH"]}}"></div>
+          <div class="side side{{values["DOWN_SOUTH_EAST"]}}"></div>
           <!--  -->
           <div class="side"></div>
           <div class="side"></div>

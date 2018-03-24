@@ -26,7 +26,7 @@ class MCubeState(object):
         result += str(self.value[MCubeSide.BACK])
         return result
 
-    def __get_side(self, side):
+    def get_side(self, side):
         return self.value[side]
 
     def __set_side(self, side, value):
@@ -36,9 +36,9 @@ class MCubeState(object):
         return copy.deepcopy(self)
 
     def __get_neighbor_line(self,side,direction):
-        work_side = self.__get_side(side)
+        work_side = self.get_side(side)
         side_neighbors = work_side.get_neighbors()
-        neighbor_side = self.__get_side(side_neighbors[direction])
+        neighbor_side = self.get_side(side_neighbors[direction])
         neighbor_direction = neighbor_side.get_neighbor_direction(
             side
         )
@@ -46,9 +46,9 @@ class MCubeState(object):
         return line
 
     def __set_neighbor_line(self,side,direction,line):
-        work_side = self.__get_side(side)
+        work_side = self.get_side(side)
         side_neighbors = work_side.get_neighbors()
-        neighbor_side = self.__get_side(side_neighbors[direction])
+        neighbor_side = self.get_side(side_neighbors[direction])
         neighbor_direction = neighbor_side.get_neighbor_direction(
             side
         )
@@ -58,7 +58,7 @@ class MCubeState(object):
         new_cube_state = self.__get_copy()
         new_cube_state.__set_side(
             side,
-            self.__get_side(side).get_rotated_state()
+            self.get_side(side).get_rotated_state()
         )
         tmp_north_line = self.__get_neighbor_line(
             side,

@@ -63,6 +63,10 @@ class MCubeSide(Flag):
     LEFT    = auto()
     BACK    = auto()
 
+    def __str__(self):
+        return str(self.value)
+
+
 class MCubeDirection(Flag):
     CENTER  = auto()
     NORTH   = auto()
