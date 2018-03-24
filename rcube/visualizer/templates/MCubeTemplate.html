@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.Row
+{
+    display: table;
+}
+.Column
+{
+    display: table-cell;
+    padding: 10px;
+    background-color: red; /*Optional*/
+}
+
+.cube-map{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+
+.side {
+  height: 50px;
+  width: 50px;
+  display: table-cell;
+    margin: 1 auto;
+  /*background-color: #ccc;*/
+  border-style: solid;
+  border-color: white;
+}
+
+.up{
+  border-style: solid;
+  border-color: #ffff00;
+}
+.down{
+  border-style: solid;
+  border-color: gray;
+}
+.left{
+  border-style: solid;
+  border-color: orange;
+}
+.front{
+  border-style: solid;
+  border-color: green;
+}
+.right{
+  border-style: solid;
+  border-color: red;
+}
+.back{
+  border-style: solid;
+  border-color: blue;
+}
+</style>
+</head>
+<body>
+<div class="cube-map">
+  <h2>Map of Rubik's Cube | Postition ID : {id}</h2>
+  <div class="line1">
+    <div class="Row">
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+      <!--Up side  -->
+      <div class="side up"></div>
+      <div class="side up"></div>
+      <div class="side up"></div>
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+    </div>
+    <div class="Row">
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+      <!--Up side  -->
+      <div class="side up"></div>
+      <div class="side up"></div>
+      <div class="side up"></div>
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+    </div>
+    <div class="Row">
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+      <!--Up side  -->
+      <div class="side up"></div>
+      <div class="side up"></div>
+      <div class="side up"></div>
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+      <!--  -->
+      <div class="side"></div>
+      <div class="side"></div>
+      <div class="side"></div>
+    </div>
+  <div class="line2">
+      <div class="Row">
+        <!-- Left side -->
+        <div class="side left"></div>
+        <div class="side left"></div>
+        <div class="side left"></div>
+        <!-- Front side -->
+        <div class="side front"></div>
+        <div class="side front"></div>
+        <div class="side front"></div>
+        <!-- Right side -->
+        <div class="side right"></div>
+        <div class="side right"></div>
+        <div class="side right"></div>
+        <!--  -->
+        <div class="side back"></div>
+        <div class="side back"></div>
+        <div class="side back"></div>
+      </div>
+      <div class="Row">
+        <!-- Left side -->
+        <div class="side left"></div>
+        <div class="side left"></div>
+        <div class="side left"></div>
+        <!-- Front side -->
+        <div class="side front"></div>
+        <div class="side front"></div>
+        <div class="side front"></div>
+        <!-- Right side -->
+        <div class="side right"></div>
+        <div class="side right"></div>
+        <div class="side right"></div>
+        <!--  -->
+        <div class="side back"></div>
+        <div class="side back"></div>
+        <div class="side back"></div>
+      </div>
+      <div class="Row">
+        <!-- Left side -->
+        <div class="side left"></div>
+        <div class="side left"></div>
+        <div class="side left"></div>
+        <!-- Front side -->
+        <div class="side front"></div>
+        <div class="side front"></div>
+        <div class="side front"></div>
+        <!-- Right side -->
+        <div class="side right"></div>
+        <div class="side right"></div>
+        <div class="side right"></div>
+        <!--  -->
+        <div class="side back"></div>
+        <div class="side back"></div>
+        <div class="side back"></div>
+      </div>
+  <div class="line3">
+        <div class="Row">
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+          <!--Up side  -->
+          <div class="side down"></div>
+          <div class="side down"></div>
+          <div class="side down"></div>
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+        </div>
+        <div class="Row">
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+          <!--Up side  -->
+          <div class="side down"></div>
+          <div class="side down"></div>
+          <div class="side down"></div>
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+        </div>
+        <div class="Row">
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+          <!--Up side  -->
+          <div class="side down"></div>
+          <div class="side down"></div>
+          <div class="side down"></div>
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+          <!--  -->
+          <div class="side"></div>
+          <div class="side"></div>
+          <div class="side"></div>
+        </div>
+  </div>
+</div>
+
+</body>
+</html>
