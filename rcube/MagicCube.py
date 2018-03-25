@@ -326,7 +326,6 @@ class MCubeState(object):
                 moved_state.__derotate(MCubeSide.FRONT)
                 moved_state.__rotate(MCubeSide.BACK)
                 moved_state.__rotate(MCubeSide.BACK)
-
             elif move is MCubeMoves.RIGHT_INVERS_LEFT:
                 moved_state.__derotate(MCubeSide.RIGHT)
                 moved_state.__rotate(MCubeSide.LEFT)
@@ -337,7 +336,6 @@ class MCubeState(object):
                 moved_state.__derotate(MCubeSide.RIGHT)
                 moved_state.__rotate(MCubeSide.LEFT)
                 moved_state.__rotate(MCubeSide.LEFT)
-
             elif move is MCubeMoves.UP_INVERS_DOWN:
                 moved_state.__derotate(MCubeSide.UP)
                 moved_state.__rotate(MCubeSide.DOWN)
@@ -349,7 +347,48 @@ class MCubeState(object):
                 moved_state.__rotate(MCubeSide.DOWN)
                 moved_state.__rotate(MCubeSide.DOWN)
 
+            elif move is MCubeMoves.FRONT_DOUBLE_BACK:
+                moved_state.__rotate(MCubeSide.FRONT)
+                moved_state.__rotate(MCubeSide.FRONT)
+                moved_state.__rotate(MCubeSide.BACK)
+            elif move is MCubeMoves.FRONT_DOUBLE_BACK_INVERS:
+                moved_state.__rotate(MCubeSide.FRONT)
+                moved_state.__rotate(MCubeSide.FRONT)
+                moved_state.__derotate(MCubeSide.BACK)
+            elif move is MCubeMoves.FRONT_DOUBLE_BACK_DOUBLE:
+                moved_state.__rotate(MCubeSide.FRONT)
+                moved_state.__rotate(MCubeSide.FRONT)
+                moved_state.__rotate(MCubeSide.BACK)
+                moved_state.__rotate(MCubeSide.BACK)
+            elif move is MCubeMoves.RIGHT_DOUBLE_LEFT:
+                moved_state.__rotate(MCubeSide.RIGHT)
+                moved_state.__rotate(MCubeSide.RIGHT)
+                moved_state.__rotate(MCubeSide.LEFT)
+            elif move is MCubeMoves.RIGHT_DOUBLE_LEFT_INVERS:
+                moved_state.__rotate(MCubeSide.RIGHT)
+                moved_state.__rotate(MCubeSide.RIGHT)
+                moved_state.__derotate(MCubeSide.LEFT)
+            elif move is MCubeMoves.RIGHT_DOUBLE_LEFT_DOUBLE:
+                moved_state.__rotate(MCubeSide.RIGHT)
+                moved_state.__rotate(MCubeSide.RIGHT)
+                moved_state.__rotate(MCubeSide.LEFT)
+                moved_state.__rotate(MCubeSide.LEFT)
+            elif move is MCubeMoves.UP_DOUBLE_DOWN:
+                moved_state.__rotate(MCubeSide.UP)
+                moved_state.__rotate(MCubeSide.UP)
+                moved_state.__rotate(MCubeSide.DOWN)
+            elif move is MCubeMoves.UP_DOUBLE_DOWN_INVERS:
+                moved_state.__rotate(MCubeSide.UP)
+                moved_state.__rotate(MCubeSide.UP)
+                moved_state.__derotate(MCubeSide.DOWN)
+            elif move is MCubeMoves.UP_DOUBLE_DOWN_DOUBLE:
+                moved_state.__rotate(MCubeSide.UP)
+                moved_state.__rotate(MCubeSide.UP)
+                moved_state.__rotate(MCubeSide.DOWN)
+                moved_state.__rotate(MCubeSide.DOWN)
+
         return moved_state
+        
 class MCubeSideState(object):
     def __init__(self, side):
         self.side = side
