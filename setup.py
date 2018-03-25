@@ -6,5 +6,5 @@ setup(name='GtPy',
       author='Narek Mouse',
       author_email='narek.mouse@gmail.com',
       url='https://github.com/Narekmouse/gtpy',
-      packages=['gtpy'],
+      packages=['gtpy','rcube'],
      )

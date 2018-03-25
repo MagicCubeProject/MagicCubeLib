@@ -91,7 +91,7 @@ class McubeHTMLView(object):
         values  = self.get_state_values()
         j2_env = Environment(loader=FileSystemLoader("/"),trim_blocks=True)
         result = j2_env.get_template(self.template_path).render(values=values,id=obj_id)
-        with open("./temp.html", "w+") as f:
+        with open("./temp"+str(obj_id)+".html", "w+") as f:
                     f.write(result)
                     f.close()
 

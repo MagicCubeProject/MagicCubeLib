@@ -54,6 +54,48 @@ class MCubeState(object):
         )
         neighbor_side.set_line(neighbor_direction,line)
 
+    def rotate(self, side):
+        self.__set_side(
+            side,
+            self.get_side(side).get_rotated_state()
+        )
+        tmp_north_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.NORTH
+        )
+        tmp_east_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.EAST
+        )
+        tmp_south_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.SOUTH
+        )
+        tmp_west_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.WEST
+        )
+        self.__set_neighbor_line(
+            side,
+            MCubeDirection.EAST,
+            tmp_north_line
+        )
+        self.__set_neighbor_line(
+            side,
+            MCubeDirection.WEST,
+            tmp_south_line
+        )
+        self.__set_neighbor_line(
+            side,
+            MCubeDirection.WEST,
+            tmp_south_line
+        )
+        self.__set_neighbor_line(
+            side,
+            MCubeDirection.NORTH,
+            tmp_west_line
+        )
+
     def get_rotated_state(self, side):
         new_cube_state = self.__get_copy()
         new_cube_state.__set_side(
@@ -100,6 +142,54 @@ class MCubeState(object):
             tmp_west_line
         )
         return new_cube_state
+
+    def get_derotated_state(self, side):
+        new_cube_state = self.__get_copy()
+        new_cube_state.__set_side(
+            side,
+            self.get_side(side).get_derotated_state()
+        )
+        tmp_north_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.NORTH
+        )
+        new_cube_state.__set_neighbor_line(
+            side,
+            MCubeDirection.WEST,
+            tmp_north_line
+        )
+
+        tmp_east_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.WEST
+        )
+        new_cube_state.__set_neighbor_line(
+            side,
+            MCubeDirection.SOUTH,
+            tmp_east_line
+        )
+
+        tmp_south_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.SOUTH
+        )
+        new_cube_state.__set_neighbor_line(
+            side,
+            MCubeDirection.EAST,
+            tmp_south_line
+        )
+
+        tmp_west_line = self.__get_neighbor_line(
+            side,
+            MCubeDirection.EAST
+        )
+        new_cube_state.__set_neighbor_line(
+            side,
+            MCubeDirection.NORTH,
+            tmp_west_line
+        )
+        return new_cube_state
+
 
 class MCubeSideState(object):
     def __init__(self, side):
