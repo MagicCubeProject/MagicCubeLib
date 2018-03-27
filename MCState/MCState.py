@@ -51,6 +51,11 @@ class MagicCubeState(object):
             self[neighbor].set_line(MCubeDirection.WEST,value)
 
     def rotate(self,side):
+        """
+        rotate dide of cube by clock rotating direction
+        :param side:
+        :return:
+        """
         self.value[side].rotate()
         temp_north_line = self.__get_neighbor_line(side,MCubeDirection.NORTH)
         temp_east_line = self.__get_neighbor_line(side,MCubeDirection.EAST)
@@ -62,6 +67,11 @@ class MagicCubeState(object):
         self.__set_neighbor_line(side,MCubeDirection.WEST,temp_south_line)
 
     def derotate(self,side):
+        """
+        rotate dide of cube by clock reverse rotating direction
+        :param side:
+        :return:
+        """
         self.value[side].derotate()
         temp_north_line = self.__get_neighbor_line(side,MCubeDirection.NORTH)
         temp_east_line = self.__get_neighbor_line(side,MCubeDirection.EAST)

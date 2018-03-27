@@ -15,6 +15,11 @@ class MCubeSide(Enum):
         return str(self.name)
 
     def neighbor(self,direction):
+        """
+        neighbor is side which have mutual elements
+        :param direction:
+        :return: neghbors
+        """
         if self is MCubeSide.FRONT:
             if direction is MCubeDirection.NORTH:
                 return MCubeSide.UP
