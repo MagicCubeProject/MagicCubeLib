@@ -21,7 +21,8 @@ class TestMagicCubeState(TestCase):
         mcs = MagicCubeState()
         for side in MCubeSide:
             print(mcs[side])
-    def test_get_neighbor_line(self):
-        mcs = MagicCubeState()
-        for side in MCubeSide:
-            print(mcs[side])
+
+    # def test_get_neighbor_line(self):
+    #     mcs = MagicCubeState()
+    #     mcs.get_neighbor_line(MCubeSide.FRONT,MCubeDirection.NORTH)
+    #     self.assertEquals()
