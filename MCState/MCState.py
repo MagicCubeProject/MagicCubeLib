@@ -11,6 +11,9 @@ class MagicCubeState(object):
                 print("11")
                 self.value[side] = MCSideState(side)
 
+    def __iter__(self):
+        return iter( list(self.value.values()))
+
     def __getitem__(self, side):
         return self.value[side]
 
@@ -20,7 +23,7 @@ class MagicCubeState(object):
     def __str__(self):
         result = str()
         for value in self:
-            result+=+str(value)
+            result+=str(value)
         return result
 
     def __get_neighbor_line(self,side,direction):
