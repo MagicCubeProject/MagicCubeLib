@@ -1,5 +1,4 @@
 from rcube.MagicCube import MCubeState
-from rcube.MagicCubeFlags import MCubeSide
 from rcube.MagicCubeFlags import MCubeMoves
 from rcube.visualizer.MCubeView import McubeHTMLView
 def main():

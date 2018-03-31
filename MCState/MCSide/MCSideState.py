@@ -27,6 +27,9 @@ class MCSideState(object):
     def __setitem__(self, direction, value):
         self.value[direction] = value
 
+    # def __dict__(self):
+    #     return self.value
+
     def line(self, direction):
         """
         get value of element in same line

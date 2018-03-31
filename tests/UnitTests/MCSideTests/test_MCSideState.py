@@ -46,3 +46,8 @@ class TestMCSideState(TestCase):
         front_side.derotate()
         self.assertEquals(front_side[MCubeDirection.NORTH],"TestValue")
         self.assertEquals(front_side[MCubeDirection.EAST],1)
+
+    # def test_dict_parse(self):
+    #     front_side = MCSideState(1)
+    #     print(dict(front_side))
+    #
