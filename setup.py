@@ -6,5 +6,5 @@ setup(name='MagicCubeLib',
       author='Narek Mouse',
       author_email='narek.mouse@gmail.com',
       url='https://github.com/Narekmouse/MagicCubeLib',
-      packages=['MCState','MCView','MCStep' ],
+      packages=['MCState','MCState,MCSide','MCView','MCStep' ],
      )
