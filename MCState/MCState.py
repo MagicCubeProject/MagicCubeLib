@@ -1,3 +1,5 @@
+import json
+
 from MCState.MCSide.MCElementDirection import MCubeDirection
 from MCState.MCSide.MCSideState import MCSideState
 from MCState.MCubeSide import MCubeSide
@@ -8,7 +10,6 @@ class MagicCubeState(object):
         if None == string_value:
             self.value = {}
             for side in MCubeSide:
-                print("11")
                 self.value[side] = MCSideState(side)
 
     def __iter__(self):
@@ -81,3 +82,19 @@ class MagicCubeState(object):
         self.__set_neighbor_line(side,MCubeDirection.EAST,temp_south_line)
         self.__set_neighbor_line(side,MCubeDirection.SOUTH,temp_west_line)
         self.__set_neighbor_line(side,MCubeDirection.WEST,temp_north_line)
+
+    def numeric(self):
+        result = str()
+        for side in MCubeSide:
+            result += self.value[side].numeric()
+        return result
+
+    def dict(self):
+        tree_dict = dict()
+        for side in MCubeSide:
+            tree_dict[side.name] = self[side].dict()
+        return tree_dict
+
+    def json(self):
+        tree = json.dumps(self.dict())
+        return tree
