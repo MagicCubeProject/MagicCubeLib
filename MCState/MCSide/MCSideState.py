@@ -1,3 +1,5 @@
+import json
+
 from MCState.MCSide.MCElementDirection import MCubeDirection
 
 
@@ -106,3 +108,18 @@ class MCSideState(object):
         self.set_line(MCubeDirection.SOUTH, temp_west)
         self.set_line(MCubeDirection.WEST, temp_north)
 
+    def dict(self):
+        tree_dict = {MCubeDirection.CENTER.name:self[MCubeDirection.CENTER].name}
+        for dir in MCubeDirection:
+            tree_dict[dir.name]=self[dir].name
+        return tree_dict
+
+    def json(self):
+        tree = json.dumps(self.dict())
+        return tree
+
+    def numeric(self):
+        result = str(self.value[MCubeDirection.CENTER].value)
+        for value in self:
+            result+=str(value.value)
+        return result
